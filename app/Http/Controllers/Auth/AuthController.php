@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Requests;
+use Illuminate\Http\Request;
 use App\User;
 use Validator;
+use JsonSchema;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -70,6 +72,7 @@ class AuthController extends Controller
         return view('auth/login');
 
     }
+
 //    public function postLogin(Request $request)
 //    {
 //        $this->validator($request,['email'=>'required|email','password'=>'required']);

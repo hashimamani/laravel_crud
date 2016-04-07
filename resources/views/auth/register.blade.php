@@ -3,7 +3,7 @@
 
 @section('content')
 
-{!! Form::open(['url' => 'auth/register'])!!}
+{!! Form::open(['url' => 'register'])!!}
 
 <h1>Registration</h1>
 
@@ -14,8 +14,8 @@
 </p>
 
 <p>
-    {!! Form::label('name', 'Name') !!}
-    {!!Form::text('name', null, array('placeholder' => ''))  !!}
+    {!! Form::label('username', 'User Name') !!}
+    {!!Form::text('username', null, array('placeholder' => ''))  !!}
 </p>
 
 <p>
