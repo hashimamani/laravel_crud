@@ -3,7 +3,7 @@
 @extends('layout')
 
 @section('content')
-{!! Form::open(['url' => 'login'])!!}
+{!! Form::open(['url' => 'auth/login'])!!}
 
         <h1>Login</h1>
 

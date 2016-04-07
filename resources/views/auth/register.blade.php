@@ -3,7 +3,7 @@
 
 @section('content')
 
-{!! Form::open(['url' => 'login'])!!}
+{!! Form::open(['url' => 'auth/register'])!!}
 
 <h1>Registration</h1>
 

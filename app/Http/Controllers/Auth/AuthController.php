@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Requests;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -63,18 +64,39 @@ class AuthController extends Controller
         ]);
     }
 
-   /* public function getLogin()
+    public function getLogin()
     {
 
-    }
-    public function postLogin()
-    {
+        return view('auth/login');
 
     }
+//    public function postLogin(Request $request)
+//    {
+//        $this->validator($request,['email'=>'required|email','password'=>'required']);
+//        return redirect($this->loginPath())
+//            ->withInput($request->only('email','remember'))
+//            ->withErrors(['email'=>$this->getFailedLoginMessage()]);
+//
+//    }
 
     public function getLogout()
     {
 
-    }*/
+    }
+
+//    public function postRegister(Request $request)
+//    {
+//
+//        $validator = $this->register->validator($request->all());
+//        if ($validator->fails())
+//        {
+//            $this->throwValidationException($request,$validator);
+//
+//        }
+//        $this->auth->login($this->registrar->create($request->all()));
+//        return redirect($this->redirect());
+//    }
+
+
 
 }
