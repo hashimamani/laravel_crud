@@ -14,8 +14,6 @@ use JsonSchema;
 use App\Http\Controllers\Controller;
 
 
-
-
 use App\Providers;
 use Illuminate\Support\Facades\Redirect;
 
@@ -27,83 +25,39 @@ class AuthController extends Controller
      * @return \Illuminate\Http\Response
      *
      */
-    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
-//
-//    public function __construct()
-//    {
-//        $this->middleware('guest', ['except' => 'getLogout']);
-//    }
 
+
+    public function __construct()
+    {
+        $this->middleware('guest', ['except' => 'getLogout']);
+    }
 
 
     public function index()
     {
-        //
+        $results = profile::get();
+        return view('auth.success', compact('results'));
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $input = Request::all();
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
-        //
+
     }
 
     public function getLogin()
@@ -115,11 +69,8 @@ class AuthController extends Controller
 
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
-        ]);
+
+
     }
 
     public function getRegister()
@@ -130,21 +81,36 @@ class AuthController extends Controller
 
     public function postRegister(Request $request)
     {
-
-        $data=[
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|confirmed|min:6',
+        ]);
+        if ($validator->fails()) {
+            return redirect('register')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $data = [
             'username' => $request->get('username'),
             'email' => $request->get('email'),
             'password' => bcrypt($request->get('password'))
 
         ];
+
         Profile::insert($data);
-        return ('You were registered successfully');
+
+
+       return Redirect::route('success');
+
 
     }
+
     public function postLogin()
     {
 
     }
+
     public function getLogout()
     {
 

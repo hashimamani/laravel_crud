@@ -73,14 +73,14 @@ class AuthController extends Controller
 
     }
 
-//    public function postLogin(Request $request)
-//    {
-//        $this->validator($request,['email'=>'required|email','password'=>'required']);
-//        return redirect($this->loginPath())
-//            ->withInput($request->only('email','remember'))
-//            ->withErrors(['email'=>$this->getFailedLoginMessage()]);
-//
-//    }
+    public function postLogin(Request $request)
+    {
+        $this->validator($request,['email'=>'required|email','password'=>'required']);
+        return redirect($this->loginPath())
+            ->withInput($request->only('email','remember'))
+            ->withErrors(['email'=>$this->getFailedLoginMessage()]);
+
+    }
 
     public function getLogout()
     {

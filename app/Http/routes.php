@@ -20,8 +20,9 @@ Route::get('/', function () {
 Route::get('login','AuthController@getLogin');
 //Route::get('login','AuthController@postlogin');
 Route::get('logout','AuthController@getLogout');
+Route::get('success','AuthController@index')->name('success');
 
 // Registration routes...
-Route::get('register', 'AuthController@getRegister');
-Route::post('register', 'AuthController@postRegister');
+Route::get('register', 'AuthController@getRegister')->name('register');
+Route::post('register', 'AuthController@postRegister')->name('register');
 
